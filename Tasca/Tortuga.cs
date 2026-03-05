@@ -2,45 +2,38 @@ namespace Tasca;
 
 public class Tortuga : Reproductor
 {
-    public Tortuga(string nom) : base(nom)
+    public Tortuga(int posiciox,int posicioy,string nom,Sexes? sexe) : base(posiciox,posicioy,nom,sexe)
     {
     }
-    
-    public virtual void Moviment()
+
+    public override Aquatic? ReaccionarAlXoc(Aquatic altre)
     {
-        PosicioX += DireccioX;
-        PosicioY += DireccioY;
-    }
-    
-    public override void Criar(Tortuga tortuga)
-    {
-        var nomfill = Nom + tortuga.Nom;
-        if (Sexe == Sexes.Femella && tortuga.Sexe == Sexes.Mascle)
+        switch (altre)
         {
-            new Tortuga(nomfill);
+            case Tortuga tortu when tortu.Sexe == Sexe:
+                altre.Matar();
+                Matar();
+                
+            break;
+            
+            case Tortuga tortuga:
+                string nomfill = Nom + altre.Nom;
+                var crearTortu = new Tortuga(posicioxrandom, posicioyrandom, nomfill,null);
+                peixera.AfegirAnimalsAlaPeixera(crearTortu);
+                return crearTortu;
+            
+           default:
+                break;
         }
         
-        else if (Sexe == Sexes.Mascle && tortuga.Sexe == Sexes.Femella)
-        {
-            new Tortuga(nomfill);
+        //Treure animals pero revisar
+        peixera.Animals = peixera.Animals.Where(m => !m.Matar()).ToList();
 
-        }
+        return null;
     }
 
-    public override void MatarMateixSexe(Tortuga tortuga)
-    {
-        if (Sexe == Sexes.Femella && tortuga.Sexe == Sexes.Femella)
-        {
-            Vida = false;
-            tortuga.Vida = false;
-            Console.WriteLine($"{Nom} i {tortuga.Nom} es troben i es moren els 2");
-        }
-        else if (Sexe == Sexes.Mascle && tortuga.Sexe == Sexes.Mascle)
-        {
-            Vida = false;
-            tortuga.Vida = false;
-            Console.WriteLine($"{Nom} i {tortuga.Nom} es troben i es moren els 2");
-        }
-    }
+    public override bool EsInvulnerable() => true;
+
+
 
 }

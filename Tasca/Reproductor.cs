@@ -9,25 +9,32 @@ public enum Sexes
 public abstract class Reproductor : Aquatic
 {
     //CONSTRUCTOR
-    public Reproductor(string nom) : base (nom)
+    public Reproductor(int posiciox, int posicioy,string nom,Sexes? sexe) : base (posiciox,posicioy,nom)
     {
-        Sexe = (Sexes)SexeAleatori.Next(0,1);
+        if (sexe == null)
+        {
+            Sexe = (Sexes)SexeAleatori.Next(0,1) == 0 ? Sexes.Femella : Sexes.Mascle;
+        }
+        else
+        {
+            Sexe = sexe!;
+        }
+        
     }
     
-    //VALORS
     private Random SexeAleatori = new Random();
-    public Sexes Sexe { get; set; }
+    public Sexes? Sexe { get; set; }
     
-   //MÈTODES
     
-    public virtual void Moviment()
+    public void MatarMateixSexe(Reproductor altre)
     {
-        PosicioX += DireccioX;
-        PosicioY += DireccioY;
+        this.Vida = false;
+        altre.Vida = false;
+        Console.WriteLine($"{Nom} i {altre.Nom} es maten per ser del mateix sexe");
     }
-
-    public abstract void Criar();
-
-    public abstract void MatarMateixSexe();
-
+    
+    public virtual bool EsMateixSexe(Reproductor altre)
+    {
+        return this.Sexe == altre.Sexe;
+    }
 }

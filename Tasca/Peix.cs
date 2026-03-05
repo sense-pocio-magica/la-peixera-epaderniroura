@@ -2,45 +2,44 @@ namespace Tasca;
 
 public class Peix : Reproductor
 {
-    public Peix(string nom) : base(nom)
+    public Peix(int posiciox,int posicioy,string nom,Sexes? sexe) : base(posiciox,posicioy,nom,sexe)
     {
+        
     }
     
-    public virtual void Moviment()
-    {
-        PosicioX += DireccioX;
-        PosicioY += DireccioY;
-    }
     
-    public override void Criar(Peix peix)
+    public override Aquatic? ReaccionarAlXoc(Aquatic altre)
     {
-        var nomfill = Nom + peix.Nom;
-        if (Sexe == Sexes.Femella && peix.Sexe == Sexes.Mascle)
+        switch (altre)
         {
-            new Peix(nomfill);
+            case Peix p when p.Sexe == Sexe:
+                Matar();
+                altre.Matar();
+                break;
+            
+            case Peix peix:
+                var nomfill = Nom + altre.Nom;
+                var crearPeix = new Peix (posicioxrandom, posicioyrandom, nomfill,null);
+                peixera.AfegirAnimalsAlaPeixera(crearPeix);
+                return crearPeix;
+               
+                break;  
+            
+            case Tauro:
+                Matar();
+                break;
+            
+            default:
+                break;
         }
         
-        else if (Sexe == Sexes.Mascle && peix.Sexe == Sexes.Femella)
-        {
-            new Peix(nomfill);
+        //Treure animals pero revisar
+            peixera.Animals = peixera.Animals.Where(m => !m.Matar()).ToList();
 
-        }
+            return null;
     }
-
-    public override void MatarMateixSexe(Peix peix)
-    {
-        if (Sexe == Sexes.Femella && peix.Sexe == Sexes.Femella)
-        {
-            Vida = false;
-            peix.Vida = false;
-            Console.WriteLine($"{Nom} i {peix.Nom} es troben i es moren els 2");
-        }
-        else if (Sexe == Sexes.Mascle && peix.Sexe == Sexes.Mascle)
-        {
-            Vida = false;
-            peix.Vida = false;
-            Console.WriteLine($"{Nom} i {peix.Nom} es troben i es moren els 2");
-        }
-    }
-
+    
+    
+    
+    
 }

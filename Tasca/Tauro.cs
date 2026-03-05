@@ -2,45 +2,61 @@ namespace Tasca;
 
 public class Tauro : Reproductor
 {
-    public Tauro(string nom) : base(nom)
+    public Tauro(int posiciox,int posicioy,string nom,Sexes? sexe) : base(posiciox,posicioy,nom,sexe)
     {
+        
     }
     
-    public virtual void Moviment()
+    public virtual int Moviment()
     {
         PosicioX += DireccioX;
         PosicioY += DireccioY;
+
+        return 0;
     }
     
-    public override void Criar(Tauro tauro)
+    public override Aquatic? ReaccionarAlXoc(Aquatic altre)
     {
-        var nomfill = Nom + tauro.Nom;
-        if (Sexe == Sexes.Femella && tauro.Sexe == Sexes.Mascle)
+        switch (altre)
         {
-            new Tauro(nomfill);
+            case Peix:
+                altre.Matar();
+                break;
+            
+            case Tauro t when t.Sexe == Sexe:
+                Matar();
+                altre.Matar();
+                break;
+            
+            case Tauro tauro:
+                var nomfill = Nom + altre.Nom;
+                var crearTauro = new Tauro(posicioxrandom, posicioyrandom, nomfill,null);
+                peixera.AfegirAnimalsAlaPeixera(crearTauro);
+                return crearTauro;
+            break;
+            
+            case Pop:
+                altre.Matar();
+                break;
+            
+            case Tortuga:
+                CanviarDireccio();
+                break;
+            
+            default:
+                break;
         }
-        
-        else if (Sexe == Sexes.Mascle && tauro.Sexe == Sexes.Femella)
-        {
-            new Tauro(nomfill);
+            //Treure animals pero revisar
+        peixera.Animals = peixera.Animals.Where(m => !m.Matar()).ToList();
 
-        }
+        return null;
     }
 
-    public override void MatarMateixSexe(Tauro tauro)
+    public int CanviarDireccio() //Comprovar si aixó està correcte
     {
-        if (Sexe == Sexes.Femella && tauro.Sexe == Sexes.Femella)
-        {
-            Vida = false;
-            tauro.Vida = false;
-            Console.WriteLine($"{Nom} i {tauro.Nom} es troben i es moren els 2");
-        }
-        else if (Sexe == Sexes.Mascle && tauro.Sexe == Sexes.Mascle)
-        {
-            Vida = false;
-            tauro.Vida = false;
-            Console.WriteLine($"{Nom} i {tauro.Nom} es troben i els 2 moren");
-        }
+        return rnd.Next(Moviment());
     }
+
+
 
 }
