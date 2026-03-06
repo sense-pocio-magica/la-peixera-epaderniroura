@@ -1,12 +1,13 @@
 namespace Tasca;
 
-public abstract class Peixera
+public class Peixera
 {
     public List<Aquatic> Animals { get; set; }
-    public int CasellesPeixera = 20;
-    public Peixera()
+    public static int CasellesPeixera = 20;
+    
+    public Peixera(List<Aquatic> animalsAquatics)
     {
-        Animals = new List<Aquatic>();
+        Animals = animalsAquatics;
     }
 
     public void AfegirAnimalsAlaPeixera(Aquatic a)
@@ -20,14 +21,14 @@ public abstract class Peixera
     }
     
     //Mètode principal
-    public void AvançarRonda(Aquatic altre)
+    public void Jugar()
     {
         for(var i = 0; i < 100; i ++)
         {
             Moure();
-            Xocar(altre);
+            Xocar(Animals);
+            Animals = Animals.Where(m => !m.Matar()).ToList();
 
-            //Posar el mètode Moviment,AmbQuiXoco, Xocar, 
         }
     }
     
@@ -66,7 +67,20 @@ public abstract class Peixera
             
             if (animalQueXoca.Count > 0)
             {
-                animals[j].ReaccionarAlXoc(animals[j+1]);
+                foreach (var animalXocat in animalQueXoca)
+                {
+                    var fill = animals[j].ReaccionarAlXoc(animalXocat);
+
+                    if (fill != null)
+                    {
+                        AfegirAnimalsAlaPeixera(fill);
+                    }
+                    
+                    if (animals[j].Vida == false)
+                    {
+                        break;
+                    }
+                }
             }
             
         }

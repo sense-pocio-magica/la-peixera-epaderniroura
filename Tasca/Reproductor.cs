@@ -9,7 +9,7 @@ public enum Sexes
 public abstract class Reproductor : Aquatic
 {
     //CONSTRUCTOR
-    public Reproductor(int posiciox, int posicioy,string nom,Sexes? sexe) : base (posiciox,posicioy,nom)
+    public Reproductor(int posiciox, int posicioy,Sexes? sexe) : base (posiciox,posicioy)
     {
         if (sexe == null)
         {
@@ -26,12 +26,12 @@ public abstract class Reproductor : Aquatic
     public Sexes? Sexe { get; set; }
     
     
-    public void MatarMateixSexe(Reproductor altre)
+    /*public void MatarMateixSexe(Reproductor altre)
     {
         this.Vida = false;
         altre.Vida = false;
-        Console.WriteLine($"{Nom} i {altre.Nom} es maten per ser del mateix sexe");
-    }
+        Console.WriteLine($"{Nom} i {altre} es maten per ser del mateix sexe");
+    }*/
     
     public virtual bool EsMateixSexe(Reproductor altre)
     {

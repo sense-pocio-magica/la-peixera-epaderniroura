@@ -4,36 +4,34 @@ public abstract class Aquatic
 {
     public static Peixera peixera;
     
-    private List<Peix> Peix;
-    private List<Tauro> Tauro;
-    private List<Pop> Pop;
-    private List<Tortuga> Tortuga;
-    
     public static Random rnd = new Random();
-    public int posicioxrandom = rnd.Next(peixera.CasellesPeixera); 
-    public int posicioyrandom = rnd.Next(peixera.CasellesPeixera);
+    public int posicioxrandom = rnd.Next(0,Peixera.CasellesPeixera); 
+    public int posicioyrandom = rnd.Next(0,Peixera.CasellesPeixera);
+
+    private static int Id = 0;
+    public int _Id { get; set; }
     
     public int PosicioX { get; set; }
     public int PosicioY { get; set; }
     protected int DireccioX { get; set; }
     protected int DireccioY { get; set; }
-
-    public string Nom { get; set; }
+    
 
     public bool Vida = true;
 
-    public Aquatic(int posicioX, int posicioY,string nom)
+    public Aquatic(int posicioX, int posicioY)
     {
+        Id++;
+        _Id = Id;
         Vida = true;
-        Nom = nom;
         PosicioX = posicioX;
         PosicioY = posicioY;
     }
     
     public virtual void Moviment()
     {
-        PosicioX += DireccioX;
-        PosicioY += DireccioY;
+        PosicioX = (PosicioX + DireccioX) % Peixera.CasellesPeixera;
+        PosicioY = (PosicioY + DireccioY) % Peixera.CasellesPeixera;
     }
     
     public abstract Aquatic? ReaccionarAlXoc(Aquatic altre);

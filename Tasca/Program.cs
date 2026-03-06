@@ -1,39 +1,61 @@
 ﻿namespace Tasca;
 
-internal class Program
+public class Program
 {
     static void Main(string[] args)
     {
-        int QuantitatDePeixos = 50;
-        int QuantitatDeTaurons = 10;
-        int QuantitatDePops = 15;
-        int QuantitatDeTortuges = 6;
-
+        List<Aquatic> AnimalsCreats = new List<Aquatic>();
+        
+        int quantitatDePeixos = 50;
+        
+        int quantitatDeTaurons = 10;
+        
+        int quantitatDePops = 15;
+        
+        int quantitatDeTortuges = 6;
+       
+       
+            
         Random rnd = new Random();
         var posicioxrandom = rnd.Next(0, 19);
         var posicioyrandom = rnd.Next(0, 19);
         
-        for (var i = 0; i <= QuantitatDePeixos; i++)
+        //Creació de peixos
+        for (var i = 0; i <= quantitatDePeixos; i++)
         {
-           new Peix(posicioxrandom, posicioyrandom, "Peix",null);
+           AnimalsCreats.Add(new Peix(posicioxrandom, posicioyrandom,Sexes.Mascle));
+           AnimalsCreats.Add(new Peix(posicioxrandom, posicioyrandom,Sexes.Femella));
         }
         
-        for (var i = 0; i <= QuantitatDeTaurons; i++)
+        //Creació de Tauró
+        for (var i = 0; i <= quantitatDeTaurons; i++)
         {
-            new Tauro(posicioxrandom, posicioyrandom, "Tauro",null);
+            AnimalsCreats.Add(new Tauro(posicioxrandom, posicioyrandom, Sexes.Mascle));
+            AnimalsCreats.Add(new Tauro(posicioxrandom, posicioyrandom, Sexes.Femella));
+
         }
         
-        for (var i = 0; i <= QuantitatDePops; i++)
+        //Creació de Pops
+        for (var i = 0; i <= quantitatDePops; i++)
         {
-            new Pop(posicioxrandom, posicioyrandom, "Pop");
+            AnimalsCreats.Add(new Pop(posicioxrandom, posicioyrandom));
         }
         
-        for (var i = 0; i <= QuantitatDeTortuges; i++)
+        //Creació de Tortuges
+        
+        for (var i = 0; i <= quantitatDeTortuges; i++)
         {
-            new Tortuga(posicioxrandom, posicioyrandom, "Tortuga",null);
+            AnimalsCreats.Add(new Tortuga(posicioxrandom, posicioyrandom,Sexes.Mascle));
+            AnimalsCreats.Add(new Tortuga(posicioxrandom, posicioyrandom, Sexes.Femella));
+
         }
         
-       
+        
+        var peixera = new Peixera(AnimalsCreats);
+        
+        peixera.Jugar();
+
+
     }
 }
 

@@ -2,7 +2,7 @@ namespace Tasca;
 
 public class Tauro : Reproductor
 {
-    public Tauro(int posiciox,int posicioy,string nom,Sexes? sexe) : base(posiciox,posicioy,nom,sexe)
+    public Tauro(int posiciox,int posicioy,Sexes? sexe) : base(posiciox,posicioy,sexe)
     {
         
     }
@@ -21,39 +21,36 @@ public class Tauro : Reproductor
         {
             case Peix:
                 altre.Matar();
-                Console.WriteLine($"El Tauró {Nom} es troba amb el PEIX {altre.Nom} i el mata");
+                Console.WriteLine($"El Tauró {_Id} es troba amb el PEIX {altre._Id} i el mata");
                 break;
             
             case Tauro t when t.Sexe == Sexe:
                 Matar();
                 altre.Matar();
-                Console.WriteLine($"Els TAURÓNS {Nom} i {altre.Nom} es maten per ser del mateix sexe");
+                Console.WriteLine($"Els TAURÓNS {_Id} i {altre._Id} es maten per ser del mateix sexe");
                 break;
             
             case Tauro tauro:
-                var nomfill = Nom + altre.Nom;
-                var crearTauro = new Tauro(posicioxrandom, posicioyrandom, nomfill,null);
-                peixera.AfegirAnimalsAlaPeixera(crearTauro);
-                Console.WriteLine($"Els TAURÓNS {Nom} i {altre.Nom} es troben i crien a {nomfill}");
+                var nomfill = _Id + altre._Id;
+                var crearTauro = new Tauro(posicioxrandom, posicioyrandom, null);
+                Console.WriteLine($"Els TAURÓNS {_Id} i {altre._Id} es troben i crien a {nomfill}");
                 return crearTauro;
             break;
             
             case Pop:
                 altre.Matar();
-                Console.WriteLine($"El Tauró {Nom} es troba amb el POP {altre.Nom} i el mata");
+                Console.WriteLine($"El Tauró {_Id} es troba amb el POP {altre._Id} i el mata");
                 break;
             
             case Tortuga:
                 CanviarDireccio();
-                Console.WriteLine($"El Tauró {Nom} es troba amb la TORTUGA {altre.Nom} i canvia de direcció");
+                Console.WriteLine($"El Tauró {_Id} es troba amb la TORTUGA {altre._Id} i canvia de direcció");
                 break;
             
             default:
                 break;
         }
-            //Treure animals pero revisar
-        peixera.Animals = peixera.Animals.Where(m => !m.Matar()).ToList();
-
+     
         return null;
     }
 
