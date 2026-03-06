@@ -18,7 +18,20 @@ public abstract class Peixera
     {
         return animals.Count();
     }
+    
+    //Mètode principal
+    public void AvançarRonda(Aquatic altre)
+    {
+        for(var i = 0; i < 100; i ++)
+        {
+            Moure();
+            Xocar(altre);
 
+            //Posar el mètode Moviment,AmbQuiXoco, Xocar, 
+        }
+    }
+    
+    //Mètodes secundaris
     private void Moure()
     {
         foreach (var animal in Animals)
@@ -31,7 +44,7 @@ public abstract class Peixera
     private List<Aquatic> AmbQuiXoco(Aquatic altre)
     {
         List<Aquatic> AnimalsQueHeXocat = new List<Aquatic>();
-        
+
         foreach (var animal in Animals)
         {
             if (animal.PosicioX == altre.PosicioX && animal.PosicioY == altre.PosicioY)
@@ -40,29 +53,21 @@ public abstract class Peixera
                 AnimalsQueHeXocat.Add(animal);
             }
         }
+
         return AnimalsQueHeXocat;
     }
-    
-    
-    public void AvançarRonda(Aquatic altre)
-    {
-        for(var i = 0; i < 100; i ++)
-        {
-            //Posar el mètode AmbQuiXoco, Xocar
-        }
-    }
-    
-    public void Xocar(Aquatic altre)
+
+    public void Xocar(List<Aquatic> animals)
     {
         //Posar el mètode Xocar
         for (var j = 1; j < Animals.Count; j++)
         {
-            if (AmbQuiXoco(altre) )
-            {
-                
-            }
+            var animalQueXoca = AmbQuiXoco(animals[j]);
             
-            altre.ReaccionarAlXoc();
+            if (animalQueXoca.Count > 0)
+            {
+                animals[j].ReaccionarAlXoc(animals[j+1]);
+            }
             
         }
         

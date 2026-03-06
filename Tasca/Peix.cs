@@ -15,18 +15,21 @@ public class Peix : Reproductor
             case Peix p when p.Sexe == Sexe:
                 Matar();
                 altre.Matar();
+                Console.WriteLine($"Els PEIXOS {Nom} i {altre.Nom} es maten per ser del mateix sexe");
                 break;
             
             case Peix peix:
                 var nomfill = Nom + altre.Nom;
                 var crearPeix = new Peix (posicioxrandom, posicioyrandom, nomfill,null);
                 peixera.AfegirAnimalsAlaPeixera(crearPeix);
+                Console.WriteLine($"Els PEIXOS {Nom} i {altre.Nom} es troben i crien a {nomfill}");
                 return crearPeix;
                
                 break;  
             
             case Tauro:
                 Matar();
+                Console.WriteLine($"El PEIX {Nom} es troba amb el TAURÓ {altre.Nom} i s'el menja ");
                 break;
             
             default:

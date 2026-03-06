@@ -13,6 +13,7 @@ public class Tortuga : Reproductor
             case Tortuga tortu when tortu.Sexe == Sexe:
                 altre.Matar();
                 Matar();
+                Console.WriteLine($"Les TORTUGUES {Nom} i {altre.Nom} es troben a la mateixa casella i es maten");
                 
             break;
             
@@ -20,6 +21,7 @@ public class Tortuga : Reproductor
                 string nomfill = Nom + altre.Nom;
                 var crearTortu = new Tortuga(posicioxrandom, posicioyrandom, nomfill,null);
                 peixera.AfegirAnimalsAlaPeixera(crearTortu);
+                Console.WriteLine($"Les TORTUGUES {Nom} i {altre.Nom} es troben i crien a {nomfill}");
                 return crearTortu;
             
            default:

@@ -13,11 +13,13 @@ public class Pop : Aquatic
         {
             case Tauro:
                 Matar();
+                Console.WriteLine($"El POP {Nom} es troba al TAURÓ {altre.Nom} i {altre.Nom} el mata");
             break;
             
             case Pop:
                 altre.Moviment();
                 Moviment();
+                Console.WriteLine($"Els POPS {Nom} i {altre.Nom} es troben a la mateixa casella i s'esquiven");
                 break;
             
             default:
