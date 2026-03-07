@@ -4,10 +4,20 @@ public class Peixera
 {
     public List<Aquatic> Animals { get; set; }
     public static int CasellesPeixera = 20;
-    
+    private List<Aquatic> TotalTaurons { get; set; }
+    private List<Aquatic> TotalTortugues { get; set; }
+    private List<Aquatic> TotalPeixos { get; set; }
+    private List<Aquatic> TotalPop { get; set; }
+
     public Peixera(List<Aquatic> animalsAquatics)
     {
         Animals = animalsAquatics;
+       
+        TotalPeixos = new List<Aquatic>();
+        TotalTaurons = new List<Aquatic>();
+        TotalPop = new List<Aquatic>();
+        TotalTortugues = new List<Aquatic>();
+        
     }
 
     public void AfegirAnimalsAlaPeixera(Aquatic a)
@@ -30,9 +40,43 @@ public class Peixera
             Moure();
             Xocar(Animals);
             Animals = Animals.Where(m => m.Vida).ToList();
-
             continue;
         }
+        ResultatFinal();
+    }
+
+    private void ResultatFinal()
+    {
+        for (var i = 0; i < Animals.Count; i++)
+        {
+            switch (Animals[i])
+            {
+                case Tauro:
+                    TotalTaurons.Add(Animals[i]);
+                    break;
+                
+                case Peix:
+                    TotalPeixos.Add(Animals[i]);
+                    break;
+                
+                case Pop:
+                    TotalPop.Add(Animals[i]);
+                    break;
+                
+                case Tortuga:
+                    TotalTortugues.Add(Animals[i]);
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        Console.WriteLine("\n===== RESULTAT FINAL =====");
+        Console.WriteLine($"Peixos: {TotalPeixos.Count}");
+        Console.WriteLine($"Taurons: {TotalTaurons.Count}");
+        Console.WriteLine($"Pops: {TotalPop.Count}");
+        Console.WriteLine($"Tortugues: {TotalTortugues.Count}");
+
     }
     
     //Mètodes secundaris
@@ -77,17 +121,17 @@ public class Peixera
             {
                 foreach (var animalXocat in animalQueXoca)
                 {
+                    //if (animalXocat._Id < animals[j]._Id) continue;
+                   
                     var fill = animals[j].ReaccionarAlXoc(animalXocat);
-
+                    
                     if (fill != null)
                     {
                         AfegirAnimalsAlaPeixera(fill);
-                    }
-                    
-                    if (animals[j].Vida == false  || animalXocat is Tortuga)
-                    {
                         break;
                     }
+
+                    if (animals[j].Vida == false || animalXocat is Tortuga) break;
                 }
             }
             

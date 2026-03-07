@@ -5,8 +5,6 @@ public abstract class Aquatic
     public static Peixera peixera;
     
     public static Random rnd = new Random();
-   // public int posicioxrandom = rnd.Next(0,Peixera.CasellesPeixera); 
-    //public int posicioyrandom = rnd.Next(0,Peixera.CasellesPeixera);
 
     private static int Id = 0;
     public int _Id { get; set; }

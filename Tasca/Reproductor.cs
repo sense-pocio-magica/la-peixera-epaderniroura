@@ -26,9 +26,5 @@ public abstract class Reproductor : Aquatic
     private Random SexeAleatori = new Random();
     public Sexes? Sexe { get; set; }
     
-    public virtual bool EsMateixSexe(Reproductor altre)
-    {
-        return this.Sexe == altre.Sexe;
-    }
     
 }

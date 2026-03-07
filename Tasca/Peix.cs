@@ -23,11 +23,10 @@ public class Peix : Reproductor
 
                 case Peix peix:
                     var nomfill = _Id + altre._Id;
-                    var crearPeix = new Peix(Peixera.CasellesPeixera, Peixera.CasellesPeixera, null);
                     Console.WriteLine($"Els PEIXOS {_Id} i {altre._Id} es troben i crien a {nomfill}");
-                    return crearPeix;
-
+                    return new Peix(rnd.Next(Peixera.CasellesPeixera), rnd.Next(Peixera.CasellesPeixera), null);
                     break;
+                   
 
                 case Tauro:
                     Matar();

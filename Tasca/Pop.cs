@@ -15,7 +15,20 @@ public class Pop : Aquatic
             DireccioX = 0;
         }
     }
-    
+
+    public void CanviarMoviment()
+    {
+        if (rnd.Next(2) == 0)
+        {
+            DireccioX = rnd.Next(2) == 0 ? -1 : 1;
+            DireccioY = 0;
+        }
+        else
+        {
+            DireccioY = rnd.Next(2) == 0 ? -1 : 1;
+            DireccioX = 0;
+        }
+    }
 
     public override Aquatic? ReaccionarAlXoc(Aquatic altre)
     {
@@ -29,8 +42,7 @@ public class Pop : Aquatic
                     break;
 
                 case Pop:
-                    altre.Moviment();
-                    Moviment();
+                    CanviarMoviment();
                     Console.WriteLine($"Els POPS {_Id} i {altre._Id} es troben a la mateixa casella i s'esquiven");
                     break;
 
