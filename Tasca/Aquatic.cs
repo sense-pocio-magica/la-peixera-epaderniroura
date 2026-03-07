@@ -5,8 +5,8 @@ public abstract class Aquatic
     public static Peixera peixera;
     
     public static Random rnd = new Random();
-    public int posicioxrandom = rnd.Next(0,Peixera.CasellesPeixera); 
-    public int posicioyrandom = rnd.Next(0,Peixera.CasellesPeixera);
+   // public int posicioxrandom = rnd.Next(0,Peixera.CasellesPeixera); 
+    //public int posicioyrandom = rnd.Next(0,Peixera.CasellesPeixera);
 
     private static int Id = 0;
     public int _Id { get; set; }
@@ -16,7 +16,6 @@ public abstract class Aquatic
     protected int DireccioX { get; set; }
     protected int DireccioY { get; set; }
     
-
     public bool Vida = true;
 
     public Aquatic(int posicioX, int posicioY)
@@ -33,7 +32,9 @@ public abstract class Aquatic
         PosicioX = (PosicioX + DireccioX) % Peixera.CasellesPeixera;
         PosicioY = (PosicioY + DireccioY) % Peixera.CasellesPeixera;
     }
-    
+   // public virtual void MovimentIPosicio();
+
+        
     public abstract Aquatic? ReaccionarAlXoc(Aquatic altre);
     public virtual bool EsInvulnerable() => false;
 

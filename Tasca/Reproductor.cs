@@ -22,19 +22,13 @@ public abstract class Reproductor : Aquatic
         
     }
     
+    
     private Random SexeAleatori = new Random();
     public Sexes? Sexe { get; set; }
-    
-    
-    /*public void MatarMateixSexe(Reproductor altre)
-    {
-        this.Vida = false;
-        altre.Vida = false;
-        Console.WriteLine($"{Nom} i {altre} es maten per ser del mateix sexe");
-    }*/
     
     public virtual bool EsMateixSexe(Reproductor altre)
     {
         return this.Sexe == altre.Sexe;
     }
+    
 }

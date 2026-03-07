@@ -25,10 +25,13 @@ public class Peixera
     {
         for(var i = 0; i < 100; i ++)
         {
+            Console.WriteLine("=================================");
+            Console.WriteLine();
             Moure();
             Xocar(Animals);
-            Animals = Animals.Where(m => !m.Matar()).ToList();
+            Animals = Animals.Where(m => m.Vida).ToList();
 
+            continue;
         }
     }
     
@@ -48,6 +51,11 @@ public class Peixera
 
         foreach (var animal in Animals)
         {
+            if (animal._Id == altre._Id)
+            {
+                continue;
+            }
+            
             if (animal.PosicioX == altre.PosicioX && animal.PosicioY == altre.PosicioY)
             {
                 //Comprovar si està correcte
@@ -76,7 +84,7 @@ public class Peixera
                         AfegirAnimalsAlaPeixera(fill);
                     }
                     
-                    if (animals[j].Vida == false)
+                    if (animals[j].Vida == false  || animalXocat is Tortuga)
                     {
                         break;
                     }
