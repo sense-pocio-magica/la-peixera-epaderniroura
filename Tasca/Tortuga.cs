@@ -4,6 +4,11 @@ public class Tortuga : Reproductor
 {
     public Tortuga(int posiciox,int posicioy,Sexes? sexe) : base(posiciox,posicioy,sexe)
     {
+        DireccioX = rnd.Next(3) - 1;
+        DireccioY = rnd.Next(3) - 1;
+
+        if (DireccioX == 0 && DireccioY == 0)
+            DireccioX = 1;
     }
     
     public override Aquatic? ReaccionarAlXoc(Aquatic altre)
@@ -21,11 +26,9 @@ public class Tortuga : Reproductor
 
                 case Tortuga tortuga:
                     var nomfill = _Id + altre._Id;
-                    var crearTortu = new Tortuga(rnd.Next(Peixera.CasellesPeixera), rnd.Next(Peixera.CasellesPeixera), null);
                     Console.WriteLine($"Les TORTUGUES {_Id} i {altre._Id} es troben i crien a {nomfill}");
-                    return crearTortu;
-                
-               
+                    return new Tortuga(rnd.Next(Peixera.CasellesPeixera), rnd.Next(Peixera.CasellesPeixera), null);
+                    break;
                 
                 default:
                     break;

@@ -9,10 +9,13 @@ public class Tauro : Reproductor
     }
     public override void Moviment()
     {
-        DireccioX = rnd.Next(3) - 1 % Peixera.CasellesPeixera;
-        DireccioY = rnd.Next(3) - 1 % Peixera.CasellesPeixera;
+        DireccioX = rnd.Next(3) - 1;
+        DireccioY = rnd.Next(3) - 1;
 
         if (DireccioX == 0 && DireccioY == 0) DireccioX = 1;
+       
+        PosicioX = (PosicioX + DireccioX + Peixera.CasellesPeixera) % Peixera.CasellesPeixera;
+        PosicioY = (PosicioY + DireccioY + Peixera.CasellesPeixera) % Peixera.CasellesPeixera;
 
         RondesQueViu++;
         
@@ -53,9 +56,8 @@ public class Tauro : Reproductor
 
                 case Tauro tauro:
                     var nomfill = _Id + altre._Id;
-                    var crearTauro = new Tauro(rnd.Next(Peixera.CasellesPeixera), rnd.Next(Peixera.CasellesPeixera), null);
                     Console.WriteLine($"Els TAURÓNS {_Id} i {altre._Id} es troben i crien a {nomfill}");
-                    return crearTauro;
+                    return new Tauro(rnd.Next(Peixera.CasellesPeixera), rnd.Next(Peixera.CasellesPeixera), null);
                     break;
 
                 case Pop:
