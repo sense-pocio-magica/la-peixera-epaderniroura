@@ -25,16 +25,11 @@ public class Peixera
     {
         Animals.Add(a);
     }
-
-    public int QuantsAnimalsHiHa(List<Aquatic> animals)
-    {
-        return animals.Count();
-    }
     
     //Mètode principal
     public void Jugar()
     {
-        for(var i = 1; i < 100; i ++)
+        for(var i = 1; i <= 100; i ++)
         {
             Console.WriteLine("\n====================================================================");
             Console.WriteLine($"----------------------------RONDA {i}------------------------------\n");

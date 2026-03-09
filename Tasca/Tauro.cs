@@ -28,7 +28,7 @@ public class Tauro : Reproductor
     }
     
 
-    public void CanviarDireccio() //Comprovar si aixó està correcte
+    public void CanviarDireccio()
     {
         DireccioX = rnd.Next(3) - 1;
         DireccioY = rnd.Next(3) - 1;
