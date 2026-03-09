@@ -30,8 +30,7 @@ public abstract class Aquatic
         PosicioX = (PosicioX + DireccioX) % Peixera.CasellesPeixera;
         PosicioY = (PosicioY + DireccioY) % Peixera.CasellesPeixera;
     }
-   // public virtual void MovimentIPosicio();
-
+   
         
     public abstract Aquatic? ReaccionarAlXoc(Aquatic altre);
     public virtual bool EsInvulnerable() => false;

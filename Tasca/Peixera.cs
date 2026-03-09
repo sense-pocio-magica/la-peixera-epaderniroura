@@ -104,7 +104,7 @@ public class Peixera
             
             if (animal.PosicioX == altre.PosicioX && animal.PosicioY == altre.PosicioY)
             {
-                //Comprovar si està correcte
+                
                 AnimalsQueHeXocat.Add(animal);
             }
         }
@@ -129,14 +129,13 @@ public class Peixera
                 foreach (var animalXocat in animalQueXoca)
                 {
                     var fill = animals[j].ReaccionarAlXoc(animalXocat);
-                    
+                  
                     AnimalsQueJaHanXocat.Add(animalXocat);
                     AnimalsQueJaHanXocat.Add(animals[j]);
                     
                     if (fill != null)
                     {
                         NousAnimals.Add(fill);
-                        //AfegirAnimalsAlaPeixera(fill);
                         break;
                     }
 
